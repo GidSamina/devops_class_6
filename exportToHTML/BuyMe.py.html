@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>BuyMe.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+BuyMe.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">select</span>
+<span class="s0">import </span><span class="s1">time</span>
+
+<span class="s0">from </span><span class="s1">selenium </span><span class="s0">import </span><span class="s1">webdriver</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">edge</span><span class="s2">.</span><span class="s1">service </span><span class="s0">import </span><span class="s1">Service</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">remote</span><span class="s2">.</span><span class="s1">webelement </span><span class="s0">import </span><span class="s1">WebElement</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support</span><span class="s2">.</span><span class="s1">select </span><span class="s0">import </span><span class="s1">Select</span>
+<span class="s0">from </span><span class="s1">webdriver_manager</span><span class="s2">.</span><span class="s1">microsoft </span><span class="s0">import </span><span class="s1">EdgeChromiumDriverManager</span>
+<span class="s0">from </span><span class="s1">time </span><span class="s0">import </span><span class="s1">sleep</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">common</span><span class="s2">.</span><span class="s1">by </span><span class="s0">import </span><span class="s1">By</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support</span><span class="s2">.</span><span class="s1">ui </span><span class="s0">import </span><span class="s1">Select</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support</span><span class="s2">.</span><span class="s1">ui </span><span class="s0">import </span><span class="s1">WebDriverWait</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support </span><span class="s0">import </span><span class="s1">expected_conditions </span><span class="s0">as </span><span class="s1">EC</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support</span><span class="s2">.</span><span class="s1">ui </span><span class="s0">import </span><span class="s1">Select</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">edge</span><span class="s2">.</span><span class="s1">options </span><span class="s0">import </span><span class="s1">Options</span>
+
+
+<span class="s3">#A. Registration screen</span>
+
+<span class="s3"># login to site</span>
+<span class="s3"># driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))</span>
+<span class="s3"># driver.get('https://buyme.co.il/')</span>
+<span class="s3"># sleep(30)</span>
+<span class="s3">#</span>
+<span class="s3"># #register to user</span>
+<span class="s3"># login_button = driver.find_element(By.XPATH, '//*[@id=&quot;ember1143&quot;]/div/ul[1]/li[3]/a')</span>
+<span class="s3"># login_button.click()</span>
+<span class="s3"># print(f'my {login_button}')</span>
+<span class="s3"># sleep(5)</span>
+<span class="s3">#</span>
+<span class="s3">#</span>
+<span class="s3"># # open a new mail</span>
+<span class="s3"># element = driver.find_element(By.XPATH, '/html/body/div[4]/div/div[1]/div[2]/div/div[2]/div[2]/div[2]/div/div[2]')</span>
+<span class="s3"># element.click()</span>
+<span class="s3"># sleep(2)</span>
+<span class="s3">#</span>
+<span class="s3">#</span>
+<span class="s3"># # add mail address</span>
+<span class="s3"># email_box = driver.find_element(By.XPATH, '/html/body/div[4]/div/div[1]/div[2]/div/div[2]/div[3]/div/form/div/label/input')</span>
+<span class="s3"># email_box.send_keys('gidonnew.samina@gmail.com')</span>
+<span class="s3"># sleep(2)</span>
+<span class="s3">#</span>
+<span class="s3"># # press enter</span>
+<span class="s3"># press_enter = driver.find_element(By.XPATH, '/html/body/div[4]/div/div[1]/div[2]/div/div[2]/div[3]/div/form/button')</span>
+<span class="s3"># press_enter.click()</span>
+<span class="s3"># sleep(30) # wait 30 second to user to add the password send to mail</span>
+<span class="s3">#</span>
+<span class="s3"># # for first login add a full name</span>
+<span class="s3"># # full_name = driver.find_element(By.XPATH, '/html/body/div[4]/div/div[1]/div[2]/div/div[2]/div[2]/form/div[1]/label/input')</span>
+<span class="s3"># # full_name.send_keys('Gideon Samian ')</span>
+<span class="s3"># # sleep(3)</span>
+<span class="s3"># #</span>
+<span class="s3"># # for first login add a cell phone</span>
+<span class="s3"># # phon_num = driver.find_element(By.XPATH, '/html/body/div[4]/div/div[1]/div[2]/div/div[2]/div[2]/form/div[2]/div/div/div/label/input')</span>
+<span class="s3"># # phon_num.send_keys('528342715')</span>
+<span class="s3"># # sleep(4)</span>
+<span class="s3"># #</span>
+<span class="s3"># #</span>
+<span class="s3"># # for first login select I am agree option</span>
+<span class="s3"># # agree_to_register = driver.find_element(By.XPATH, '/html/body/div[4]/div/div[1]/div[2]/div/div[2]/div[2]/form/div[3]/div')</span>
+<span class="s3"># # agree_to_register.click()</span>
+<span class="s3"># # sleep(2)</span>
+<span class="s3"># #</span>
+<span class="s3"># # press enter to register</span>
+<span class="s3"># # press_to_register = driver.find_element(By.XPATH, '/html/body/div[4]/div/div[1]/div[2]/div/div[2]/div[2]/form/button')</span>
+<span class="s3"># # press_to_register.click()</span>
+<span class="s3"># # sleep(2)</span>
+
+
+<span class="s3">#B. Home Screen</span>
+
+<span class="s3"># login to the site</span>
+<span class="s1">driver </span><span class="s2">= </span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">Edge</span><span class="s2">(</span><span class="s1">service</span><span class="s2">=</span><span class="s1">Service</span><span class="s2">(</span><span class="s1">EdgeChromiumDriverManager</span><span class="s2">().</span><span class="s1">install</span><span class="s2">()))</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s4">'https://buyme.co.il/'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+
+<span class="s3"># Pick a price point 300-400 ש&quot;ח</span>
+<span class="s1">dropdowns </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//div[@role=&quot;combobox&quot;]'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">dropdowns</span><span class="s2">[</span><span class="s5">0</span><span class="s2">].</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">option </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">&quot;//li[@value='4']&quot;</span><span class="s2">)</span>
+<span class="s1">option</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+
+
+<span class="s3"># Pick the area דרןם</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+<span class="s1">dropdowns</span><span class="s2">[</span><span class="s5">1</span><span class="s2">].</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">option_1 </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">&quot;//li[@value='12']&quot;</span><span class="s2">)</span>
+<span class="s1">option_1</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+
+
+<span class="s3"># Pick the category המתנות האהובות של 2025</span>
+<span class="s1">dropdowns</span><span class="s2">[</span><span class="s5">2</span><span class="s2">].</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">option_1 </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">&quot;//li[@value='541']&quot;</span><span class="s2">)</span>
+<span class="s1">option_1</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+
+
+<span class="s3"># Press the search button</span>
+<span class="s1">press_serch </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//*[@id=&quot;ember1347&quot;]'</span><span class="s2">)</span>
+<span class="s1">press_serch</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+
+<span class="s3"># C.Choose business screen</span>
+
+<span class="s3"># Pick a business</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">press_business </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//*[@id=&quot;ember2177&quot;]'</span><span class="s2">)</span>
+<span class="s1">press_business</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+
+
+<span class="s3"># Type a price</span>
+<span class="s1">type_price </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'/html/body/div[4]/div/div[2]/div[1]/div/div/div[2]/div/ul/li/div/div/div[2]/form/div[1]/label'</span><span class="s2">)</span>
+<span class="s1">type_price</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s4">'350'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+
+
+<span class="s3"># press chose</span>
+<span class="s1">type_chose </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH </span><span class="s2">, </span><span class="s4">'/html/body/div[4]/div/div[2]/div[1]/div/div/div[2]/div/ul/li/div/div/div[2]/form/div[2]/button/span' </span><span class="s2">)</span>
+<span class="s1">type_chose</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+
+
+<span class="s3"># D. Sender &amp; Receiver information screen</span>
+
+<span class="s3"># Press radio button someone elas</span>
+<span class="s3"># type_else = driver.find_element(By.XPATH , '/html/body/div[6]/div/div/div[3]/div/div/div[1]/form/div[1]/div/div/div/div/div[1]/span' )</span>
+<span class="s3"># type_else.click()</span>
+<span class="s3"># sleep(2)</span>
+
+
+<span class="s3"># Enter the receiver name</span>
+<span class="s1">receiver_name </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//*[@id=&quot;ember2437&quot;]'</span><span class="s2">)</span>
+<span class="s1">receiver_name</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s4">'Gideon S'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+
+
+<span class="s3"># Enter a blessing</span>
+<span class="s1">blessing </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//*[@id=&quot;ember2444&quot;]'</span><span class="s2">)</span>
+<span class="s1">blessing</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s4">'מזל טוב ליום הולדת שפע ברכות'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+
+
+<span class="s3"># Upload a picture</span>
+<span class="s1">picture </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//*[@id=&quot;ember2452&quot;]'</span><span class="s2">)</span>
+<span class="s1">picture</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s4">r'C:\Users\97252\PycharmProjects\PythonProject4\Site_test\cat.png'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+
+<span class="s3"># Pick the event (Wedding/birthday)</span>
+<span class="s1">dropdowns </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//div[@role=&quot;combobox&quot;]'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">dropdowns</span><span class="s2">[</span><span class="s5">0</span><span class="s2">].</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+<span class="s1">option </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">&quot;//li[@value='10']&quot;</span><span class="s2">)</span>
+<span class="s1">option</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+
+
+<span class="s3"># Pick Email / SMS option</span>
+<span class="s1">press_continue  </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//*[@id=&quot;ember2454&quot;]'</span><span class="s2">)</span>
+<span class="s1">press_continue</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+<span class="s1">sms_icon </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">CSS_SELECTOR</span><span class="s2">, </span><span class="s4">'.method-icon'</span><span class="s2">)</span>
+<span class="s1">sms_icon</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span>
+<span class="s1">sms_input_field </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s4">'//*[@id=&quot;sms&quot;]'</span><span class="s2">)</span>
+<span class="s1">sms_input_field</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s4">'0528342715'</span><span class="s2">)</span>
+<span class="s1">sleep</span><span class="s2">(</span><span class="s5">3</span><span class="s2">)</span></pre>
+</body>
+</html>
